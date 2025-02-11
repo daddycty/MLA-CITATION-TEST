@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MLA Citation Generator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>MLA Citation Generator</h1>
+        <form id="citationForm">
+            <label for="author">Author's Name:</label>
+            <input type="text" id="author" name="author" required>
+
+            <label for="title">Title of the Source:</label>
+            <input type="text" id="title" name="title" required>
+
+            <label for="container">Container (e.g., Book, Website, etc.):</label>
+            <input type="text" id="container" name="container" required>
+
+            <label for="publisher">Publisher:</label>
+            <input type="text" id="publisher" name="publisher" required>
+
+            <label for="date">Publication Date:</label>
+            <input type="date" id="date" name="date" required>
+
+            <label for="location">Location (e.g., URL or Page Range):</label>
+            <input type="text" id="location" name="location" required>
+
+            <button type="submit">Generate Citation</button>
+        </form>
+
+        <div id="citationOutput">
+            <h2>Your MLA Citation:</h2>
+            <p id="citationText"></p>
+        </div>
+    </div>
+
+    <!-- Embedded JavaScript -->
+    <script>
+        document.getElementById('citationForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            // Get form values
+            const author = document.getElementById('author').value;
+            const title = document.getElementById('title').value;
+            const container = document.getElementById('container').value;
+            const publisher = document.getElementById('publisher').value;
+            const date = document.getElementById('date').value;
+            const location = document.getElementById('location').value;
+
+            // Format the date
+            const formattedDate = new Date(date).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+            });
+
+            // Generate MLA citation
+            const citation = `${author}. "${title}." <i>${container}</i>, ${publisher}, ${formattedDate}, ${location}.`;
+
+            // Display the citation
+            document.getElementById('citationText').innerHTML = citation;
+        });
+    </script>
+</body>
+</html>
